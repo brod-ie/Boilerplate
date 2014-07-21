@@ -1,0 +1,13 @@
+# Local dev files
+.DS_Store
+
+# NPM
+node_modules
+
+# Bower
+bower_modules
+
+# Built app
+app
+public/scripts
+public/styles

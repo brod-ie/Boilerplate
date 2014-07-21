@@ -1,0 +1,22 @@
+{
+  "name": "Brodie-Boilerplate",
+  "main": "./app/app.js",
+  "authors": [
+    "Ryan Brodie <ryanbrodie@me.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "bower_modules",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bootstrap": "~3.2.0",
+    "jquery": "~2.1.1",
+    "bootstrap-sass": "~3.0.2"
+  }
+}
