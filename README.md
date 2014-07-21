@@ -1,5 +1,5 @@
 # Brodie Boilerplate
-A boilerplate implementing my tech-stack of choice.
+A boilerplate implementing my tech stack of choice.
 
 ## Quick start
 
