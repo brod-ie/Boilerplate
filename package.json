@@ -3,7 +3,7 @@
   "private": true,
   "main": "./app/app.js",
   "scripts": {
-    "start": "npm install && gulp build --require coffee-script/register && supervisor app/app.js"
+    "start": "npm install && bower install && gulp build --require coffee-script/register && supervisor app/app.js"
   },
   "author": "Ryan Brodie <ryanbrodie@me.com>",
   "license": "MIT",
