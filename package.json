@@ -3,7 +3,7 @@
   "private": true,
   "main": "./app/app.js",
   "scripts": {
-    "start": "npm install && bower install && gulp build --require coffee-script/register && supervisor app/app.js"
+    "start": "npm install && bower install && gulp build --require coffee-script/register && supervisor -e 'js|css|jade|png|jpeg|json|coffee' app/app.js"
   },
   "author": "Ryan Brodie <ryanbrodie@me.com>",
   "license": "MIT",
@@ -23,13 +23,18 @@
     "jquery": "^2.1.1",
     "normalize-css": "^2.3.1",
     "gulp-cssimport": "^1.2.3",
-    "gulp-replace": "^0.4.0"
+    "gulp-replace": "^0.4.0",
+    "lodash": "^2.4.1",
+    "backbone": "^1.1.2",
+    "gulp-jade": "^0.6.1",
+    "jade": "^1.4.2"
   },
   "dependencies": {
     "require": "^0.5.0",
     "express": "^4.6.1",
     "jade": "^1.4.2",
     "supervisor": "^0.6.0",
-    "crypto": "0.0.3"
+    "crypto": "0.0.3",
+    "compression": "^1.0.9"
   }
 }

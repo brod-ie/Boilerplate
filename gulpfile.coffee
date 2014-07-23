@@ -14,6 +14,9 @@ paths =
   styles:
     src: "./assets/styles/*.scss"
     dest: "./public/styles"
+  views:
+    src: "./views/*.jade"
+    dest: "./public/templates"   
 
 # Scripts
 # =======
@@ -58,9 +61,20 @@ gulp.task "styles", ->
     .pipe do minify_css
     .pipe gulp.dest paths.styles.dest
 
+# Views
+# =====
+gulp.task "views", ->
+  jade = require "gulp-jade"
+
+  gulp.src paths.views.src
+    .pipe jade(
+      client: true
+    )
+    .pipe gulp.dest paths.views.dest
+
 # Build
 # =====
-gulp.task "build", ["scripts", "styles"], ->
+gulp.task "build", ["scripts", "styles", "views"], ->
   util.log "🔨  Built"
 
 # Default
@@ -69,3 +83,4 @@ gulp.task "default", ["build"], ->
   util.log "👓  Watching..."
   gulp.watch [paths.scripts.server.src, paths.scripts.client.src], ["scripts"]
   gulp.watch paths.styles.src, ["styles"]
+  gulp.watch paths.views.src, ["views"]

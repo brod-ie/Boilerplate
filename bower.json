@@ -15,8 +15,8 @@
     "tests"
   ],
   "devDependencies": {
-    "bootstrap": "~3.2.0",
     "jquery": "~2.1.1",
-    "bootstrap-sass": "~3.0.2"
+    "bootstrap-sass": "~3.0.2",
+    "modernizr": "~2.8.3"
   }
 }
