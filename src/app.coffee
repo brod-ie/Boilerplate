@@ -12,6 +12,7 @@ app.set "view cache", true
 app.set "views", "#{ __dirname }/../views"
 app.use compress
 app.use express.static(__dirname + "/../public")
+app.locals.pretty = true
 
 # Middleware
 app.use (req, res, next) ->

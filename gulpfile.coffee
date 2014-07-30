@@ -9,14 +9,14 @@ paths =
       src: "./src/*.coffee"
       dest: "./app"
     client:
-      src: "./assets/scripts/*.coffee"
+      src: "./assets/scripts/main.coffee"
       dest: "./public/scripts"
   styles:
     src: "./assets/styles/*.scss"
     dest: "./public/styles"
   views:
     src: "./views/*.jade"
-    dest: "./public/templates"   
+    dest: "./public/templates"
 
 # Scripts
 # =======
@@ -25,23 +25,25 @@ gulp.task "scripts", ->
   reporter = require("coffeelint-stylish").reporter
   coffee = require "gulp-coffee"
   uglify = require "gulp-uglify"
-  include = require "gulp-include"
+  browserify = require "browserify"
+  source = require "vinyl-source-stream"
 
   # Client
   gulp.src paths.scripts.client.src
     .pipe do coffeelint
     .pipe do coffeelint.reporter
-    .pipe do coffee
-    .pipe do include
-    .pipe do uglify
-    .pipe gulp.dest paths.scripts.client.dest
+    .pipe coffeelint.reporter("fail")
+
+  browserify( paths.scripts.client.src )
+    .bundle()
+    .pipe(source 'main.js')
+    .pipe(gulp.dest( paths.scripts.client.dest ));
 
   # Server
   gulp.src paths.scripts.server.src
     .pipe do coffeelint
     .pipe do coffeelint.reporter
     .pipe do coffee
-    .pipe do include
     .pipe gulp.dest paths.scripts.server.dest
 
 # Styles
@@ -65,11 +67,13 @@ gulp.task "styles", ->
 # =====
 gulp.task "views", ->
   jade = require "gulp-jade"
+  define = require "gulp-define-module"
 
   gulp.src paths.views.src
     .pipe jade(
       client: true
     )
+    .pipe define("node")
     .pipe gulp.dest paths.views.dest
 
 # Build

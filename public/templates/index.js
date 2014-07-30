@@ -1,7 +1,7 @@
-function template(locals) {
+module.exports = function template(locals) {
 var buf = [];
 var jade_mixins = {};
 var jade_interp;
-;var locals_for_with = (locals || {});(function (version) {
-buf.push("<!DOCTYPE html><html><head><title>Brodie Boilerplate</title><link rel=\"stylesheet\" type=\"text/css\"" + (jade.attr("href", "/styles/main.css?" + ( version ) + "", true, true)) + "></head><body><div class=\"container\"><h1>Hello Hello Hi</h1><p>How's Brodie today?</p></div><script type=\"text/javascript\"" + (jade.attr("src", "/scripts/main.js?" + ( version ) + "", true, true)) + "></script></body></html>");}("version" in locals_for_with?locals_for_with.version:typeof version!=="undefined"?version:undefined));;return buf.join("");
-}
+;var locals_for_with = (locals || {});(function (title, version) {
+buf.push("<!DOCTYPE html><html><head><title>" + (jade.escape((jade_interp =  title ) == null ? '' : jade_interp)) + "</title><link rel=\"stylesheet\" type=\"text/css\"" + (jade.attr("href", "/styles/main.css?" + ( version ) + "", true, true)) + "></head><body><div class=\"container\"><h1>Hello Hello Hi</h1><p>How's Brodie today?</p><p><a href=\"/ryan/brodie\">Pushstate example</a></p></div><script type=\"text/javascript\"" + (jade.attr("src", "/scripts/main.js?" + ( version ) + "", true, true)) + "></script></body></html>");}("title" in locals_for_with?locals_for_with.title:typeof title!=="undefined"?title:undefined,"version" in locals_for_with?locals_for_with.version:typeof version!=="undefined"?version:undefined));;return buf.join("");
+};
