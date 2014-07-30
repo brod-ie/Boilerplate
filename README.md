@@ -20,4 +20,4 @@ A boilerplate implementing my tech stack of choice.
 - Shared views client/server using pushstate
 - SocketIO
 - Neo4j
-- Lodash + Backbone
+- ~~Lodash + Backbone~~
