@@ -30,7 +30,8 @@
     "coffeeify": "^0.7.0",
     "vinyl-source-stream": "^0.1.1",
     "browserify": "< 5",
-    "gulp-define-module": "^0.1.1"
+    "gulp-define-module": "^0.1.1",
+    "animate.css": "^3.1.1"
   },
   "dependencies": {
     "require": "^0.5.0",
