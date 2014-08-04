@@ -3,7 +3,7 @@
   "private": true,
   "main": "./app/app.js",
   "scripts": {
-    "start": "npm install && bower install && gulp build --require coffee-script/register && supervisor -e 'js|css|jade|png|jpeg|json|coffee' app/app.js"
+    "start": "npm install && bower install && gulp build --require coffee-script/register && supervisor -e 'js|css|jade|png|jpeg|json' app/app.js"
   },
   "author": "Ryan Brodie <ryanbrodie@me.com>",
   "license": "MIT",
@@ -31,7 +31,10 @@
     "vinyl-source-stream": "^0.1.1",
     "browserify": "< 5",
     "gulp-define-module": "^0.1.1",
-    "animate.css": "^3.1.1"
+    "animate.css": "^3.1.1",
+    "bootstrap-browserify": "^2.1.1",
+    "gulp-if": "^1.2.4",
+    "gulp-notify": "^1.4.0"
   },
   "dependencies": {
     "require": "^0.5.0",
@@ -39,7 +42,9 @@
     "jade": "^1.4.2",
     "supervisor": "^0.6.0",
     "crypto": "0.0.3",
-    "compression": "^1.0.9"
+    "compression": "^1.0.9",
+    "socket.io": "^1.0.6",
+    "http": "0.0.0"
   },
   "browserify": {
     "transform": [

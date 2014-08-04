@@ -11,13 +11,17 @@ A boilerplate implementing my tech stack of choice.
 
 - GulpJS build system
 - Jade templating
+- Browserify
+- SocketIO
 - Scripting in SASS & CoffeeScript
-- Bootstrap, Modernizr, JQuery
+- Bootstrap, Backbone, Lodash, JQuery
 - Express server with static assets folder
 - Cachebusting
+- Flat UI Colors
 
 ## Todo
 - Shared views client/server using pushstate
-- SocketIO
+- ~~SocketIO~~
 - Neo4j
 - ~~Lodash + Backbone~~
+- Finish Hello.coffee notification class

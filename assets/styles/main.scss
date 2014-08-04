@@ -1,2 +1,61 @@
 @import "../../bower_modules/bootstrap-sass/dist/css/bootstrap.css";
 @import "../../node_modules/animate.css/animate.css";
+
+@import "lib/colours.scss";
+@import "lib/animate.scss";
+
+// Type
+// ----
+
+$type__regular: 'Roboto';
+
+body {
+  font-family: $type__regular, sans-serif;
+}
+
+// Hello
+// -----
+
+$hello__bg: $amethyst;
+$hello__color: $white;
+
+body > .container {
+  transition: margin 300ms cubic-bezier(0.17, 0.04, 0.03, 0.94);
+}
+
+.hello {
+  transition: max-height 300ms cubic-bezier(0.17, 0.04, 0.03, 0.94);
+  background: $hello__bg;
+  color: $hello__color;
+  max-height: 0;
+
+  > div {
+    padding-top: 10px;
+    padding-bottom: 8px;
+    font-size: 18px;
+  }
+
+  &.slideDown {
+    max-height: 46px;
+  }
+
+  &.slideUp {
+    max-height: 0;
+  }
+
+  &.info {
+    background: $hello__bg;
+  }
+
+  &.success {
+    background: $emerald;
+  }
+
+  &.error {
+    background: $pumpkin;
+  }
+
+  &.fatal {
+    background: $pomegranate;
+  }
+}

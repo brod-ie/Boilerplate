@@ -1,10 +1,12 @@
 require "coffee-script/register"
 
 # Requires
-express = require("express")
+express = require "express"
 compress = require("compression")()
 
 app = express()
+http = require("http").Server(app)
+io = require("socket.io")(http)
 
 # Express settings
 app.engine "jade", require("jade").__express
@@ -21,5 +23,14 @@ app.use (req, res, next) ->
 
 require("#{ __dirname }/../routes")(app)
 
-server = app.listen 3000, ->
+io.set 'transports', ['xhr-polling', 'jsonp-polling', 'polling']
+
+io.on "connection", (socket) ->
+  console.log "A user connected!"
+  io.emit "message", { "message": "hello!", "id": socket.id }
+
+io.on "auth", (data) ->
+  console.log data
+
+server = http.listen 3000, ->
   console.log "👂  Listening on port %d", server.address().port

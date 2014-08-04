@@ -1,5 +1,7 @@
 gulp = require "gulp"
 util = require "gulp-util"
+notify = require "gulp-notify"
+_if = require "gulp-if"
 
 # Paths
 # =====
@@ -37,7 +39,8 @@ gulp.task "scripts", ->
   browserify( paths.scripts.client.src )
     .bundle()
     .pipe(source 'main.js')
-    .pipe(gulp.dest( paths.scripts.client.dest ));
+    .pipe(gulp.dest( paths.scripts.client.dest ))
+    .pipe( _if(process.platform is "darwin", notify("Built <%= file.relative %>")))
 
   # Server
   gulp.src paths.scripts.server.src
@@ -45,6 +48,7 @@ gulp.task "scripts", ->
     .pipe do coffeelint.reporter
     .pipe do coffee
     .pipe gulp.dest paths.scripts.server.dest
+    .pipe( _if(process.platform is "darwin", notify("Built <%= file.relative %>")))
 
 # Styles
 # ======
@@ -62,6 +66,7 @@ gulp.task "styles", ->
     .pipe replace '/*!', '/*'
     .pipe do minify_css
     .pipe gulp.dest paths.styles.dest
+    .pipe( _if(process.platform is "darwin", notify("Built <%= file.relative %>")))
 
 # Views
 # =====
@@ -75,6 +80,7 @@ gulp.task "views", ->
     )
     .pipe define("node")
     .pipe gulp.dest paths.views.dest
+    .pipe( _if(process.platform is "darwin", notify("Built <%= file.relative %>")))
 
 # Build
 # =====
