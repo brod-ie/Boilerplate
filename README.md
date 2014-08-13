@@ -20,6 +20,7 @@ A boilerplate implementing my tech stack of choice.
 - Flat UI Colors
 
 ## Todo
+- Proper environment switching. Use `process.env.ENV_VARIABLE` to establish debugging and minify practices
 - Shared views client/server using pushstate
 - ~~SocketIO~~
 - Neo4j
