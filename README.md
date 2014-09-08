@@ -5,7 +5,12 @@ A boilerplate implementing my tech stack of choice.
 
 1. Fork this repo
 2. `$ git clone https://github.com/your-username/Boilerplate.git`
-3. `$ cd path/to/Boilerplate && npm start`
+3. `$ cd path/to/Boilerplate && npm run build`
+
+## Running the server
+
+1. `$ npm start`
+2. Navigate to [`http://localhost:3000`](http://localhost:3000)
 
 ## Features
 
