@@ -1,4 +1,5 @@
 # Brodie Boilerplate
+
 A boilerplate implementing my tech stack of choice.
 
 ## Quick start
@@ -16,13 +17,13 @@ A boilerplate implementing my tech stack of choice.
 
 - GulpJS build system
 - Jade templating
-- Browserify
+- Browserify for client side dependency
 - SocketIO
 - Scripting in SASS & CoffeeScript
 - Bootstrap, Backbone, Lodash, JQuery
 - Express server with static assets folder
 - Cachebusting
-- Flat UI Colors
+- Flat UI Colors and Animate.css for front end niceties
 
 ## Todo
 - Proper environment switching. Use `process.env.ENV_VARIABLE` to establish debugging and minify practices
@@ -31,3 +32,4 @@ A boilerplate implementing my tech stack of choice.
 - Neo4j
 - ~~Lodash + Backbone~~
 - Finish Hello.coffee notification class
+- Testing with [Jasmine](http://coffeescriptcookbook.com/chapters/testing/testing_with_jasmine)
