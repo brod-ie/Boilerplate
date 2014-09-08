@@ -11,3 +11,4 @@ bower_modules
 app
 public/scripts
 public/styles
+public/templates
