@@ -15,7 +15,7 @@ A boilerplate implementing my tech stack of choice.
 
 ## Features
 
-- GulpJS build system
+- GulpJS build system (with integrated Jasmine BDD testing)
 - Jade templating
 - Browserify for client side dependency
 - SocketIO
