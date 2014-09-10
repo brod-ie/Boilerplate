@@ -19,10 +19,24 @@ paths =
   views:
     src: "./views/*.jade"
     dest: "./public/templates"
+  tests:
+    src: "./tests/*.coffee"
+
+# Test
+# ====
+gulp.task "test", (callback) ->
+  jasmine = require "gulp-jasmine"
+
+  gulp.src paths.tests.src
+    .pipe jasmine(
+      verbose: true
+    )
+
+  callback(err) # Exit if tests fail
 
 # Scripts
 # =======
-gulp.task "scripts", ->
+gulp.task "scripts", ["test"], ->
   coffeelint = require "gulp-coffeelint"
   reporter = require("coffeelint-stylish").reporter
   coffee = require "gulp-coffee"
@@ -91,6 +105,6 @@ gulp.task "build", ["scripts", "styles", "views"], ->
 # =======
 gulp.task "default", ["build"], ->
   util.log "👓  Watching..."
-  gulp.watch [paths.scripts.server.src, paths.scripts.client.src], ["scripts"]
+  gulp.watch [paths.scripts.server.src, paths.scripts.client.src, paths.tests.src], ["test", "scripts"]
   gulp.watch paths.styles.src, ["styles"]
   gulp.watch paths.views.src, ["views"]
