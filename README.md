@@ -6,7 +6,7 @@ A boilerplate implementing my tech stack of choice.
 
 1. Fork this repo
 2. `$ git clone https://github.com/your-username/Boilerplate.git`
-3. `$ cd path/to/Boilerplate && npm run build`
+3. `$ cd path/to/Boilerplate && npm run init && npm run build`
 
 ## Running the server
 
@@ -36,7 +36,7 @@ A boilerplate implementing my tech stack of choice.
 - Neo4j
 - ~~Lodash + Backbone~~
 - Finish Hello.coffee notification class
-- Testing with [Jasmine](http://coffeescriptcookbook.com/chapters/testing/testing_with_jasmine)
+- ~~Testing with [Jasmine](http://coffeescriptcookbook.com/chapters/testing/testing_with_jasmine)~~
 - ASync browserify module loading
   - Use jQuery only for legacy browsers and Zepto where possible
   - Download templates on the fly

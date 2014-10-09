@@ -4,6 +4,9 @@ require "coffee-script/register"
 express = require "express"
 compress = require("compression")()
 
+# Config
+config = require "#{ __dirname }/../../Boilerplate.json"
+
 app = express()
 http = require("http").Server(app)
 io = require("socket.io")(http)
@@ -13,7 +16,7 @@ app.engine "jade", require("jade").__express
 app.set "view cache", true
 app.set "views", "#{ __dirname }/../views"
 app.use compress
-app.use express.static(__dirname + "/../public")
+app.use express.static("#{ __dirname }/../public")
 app.locals.pretty = true
 
 # Middleware
@@ -22,8 +25,6 @@ app.use (req, res, next) ->
   next()
 
 require("#{ __dirname }/../routes")(app)
-
-io.set 'transports', ['xhr-polling', 'jsonp-polling', 'polling']
 
 io.on "connection", (socket) ->
   console.log "A user connected!"

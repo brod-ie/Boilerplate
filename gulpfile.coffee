@@ -32,11 +32,11 @@ gulp.task "test", (callback) ->
       verbose: true
     )
 
-  callback(err) # Exit if tests fail
+  callback(err) if err? # Exit if test's fail
 
 # Scripts
 # =======
-gulp.task "scripts", ["test"], ->
+gulp.task "scripts", ->
   coffeelint = require "gulp-coffeelint"
   reporter = require("coffeelint-stylish").reporter
   coffee = require "gulp-coffee"
@@ -98,7 +98,7 @@ gulp.task "views", ->
 
 # Build
 # =====
-gulp.task "build", ["scripts", "styles", "views"], ->
+gulp.task "build", ["test", "scripts", "styles", "views"], ->
   util.log "🔨  Built"
 
 # Default
