@@ -4,7 +4,7 @@
   "main": "./app/app.js",
   "scripts": {
     "init": "npm install gulp -g && npm install coffee-script -g && npm install browserify-shim -g && npm install && echo '{\"PORT\":5000}' > config.json",
-    "test": "npm run init && gulp test",
+    "test": "npm run init && npm run build && gulp test",
     "build": "npm install && gulp build --require coffee-script/register",
     "start": "supervisor -e 'js|css|jade|png|jpeg|json' app/app.js"
   },
