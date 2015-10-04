@@ -3,7 +3,7 @@
   "private": true,
   "main": "./app/app.js",
   "scripts": {
-    "init": "npm install gulp -g && npm install coffee-script -g && npm install browserify-shim -g && npm install",
+    "init": "npm install gulp -g && npm install coffee-script -g && npm install browserify-shim -g && npm install && echo '{\"PORT\":5000}' > config.json",
     "test": "gulp test",
     "build": "npm install && gulp build --require coffee-script/register",
     "start": "supervisor -e 'js|css|jade|png|jpeg|json' app/app.js"

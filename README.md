@@ -1,4 +1,4 @@
-# Brodie Boilerplate
+# Brodie's Boilerplate
 
 A boilerplate implementing my tech stack of choice.
 
@@ -6,7 +6,7 @@ A boilerplate implementing my tech stack of choice.
 
 1. Fork this repo
 2. `$ git clone https://github.com/your-username/Boilerplate.git`
-3. `$ cd path/to/Boilerplate && npm run init && npm run build`
+3. `$ cd path/to/Boilerplate && npm run init && npm run build && npm start`
 
 ## Usage
 
