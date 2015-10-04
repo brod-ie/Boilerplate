@@ -8,10 +8,31 @@ A boilerplate implementing my tech stack of choice.
 2. `$ git clone https://github.com/your-username/Boilerplate.git`
 3. `$ cd path/to/Boilerplate && npm run init && npm run build`
 
-## Running the server
+## Usage
 
-1. `$ npm start`
-2. Navigate to [`http://localhost:3000`](http://localhost:3000)
+### Initialise
+
+    npm init
+
+Installs all dependencies found in [`package.json`](https://github.com/ryanbrodie/Boilerplate/blob/master/package.json).
+
+### Build
+
+    npm run build
+
+Builds source using [Gulp](http://gulpjs.com/).
+
+### Test
+
+    npm run test
+
+Performs tests using jasmine-node and Frisby.
+
+### Run
+
+    npm start
+
+Runs the server using supervisor.
 
 ## Features
 

@@ -20,7 +20,7 @@ paths =
     src: "./views/*.jade"
     dest: "./public/templates"
   tests:
-    src: "./tests/*.coffee"
+    src: "./spec/*.coffee"
 
 # Test
 # ====
@@ -98,7 +98,7 @@ gulp.task "views", ->
 
 # Build
 # =====
-gulp.task "build", ["test", "scripts", "styles", "views"], ->
+gulp.task "build", ["scripts", "styles", "views"], ->
   util.log "🔨  Built"
 
 # Default

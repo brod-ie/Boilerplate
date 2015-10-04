@@ -1,5 +1,7 @@
 # Local dev files
 .DS_Store
+*.log
+config.json
 
 # NPM
 node_modules
