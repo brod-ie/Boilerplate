@@ -142,4 +142,4 @@ gulp.task "default", ["build"], ->
   util.log "👓  Watching..."
   gulp.watch(["#{paths.scripts.dir}/**/*.litcoffee", paths.tests.src], ["test", "scripts"]).on("change", reload)
   gulp.watch(paths.styles.src, ["styles"]).on("change", reload)
-  gulp.watch(paths.views.dir, ["views"]).on("change", reload)
+  gulp.watch(paths.views.src, ["views"]).on("change", reload)
