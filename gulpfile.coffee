@@ -14,7 +14,6 @@ paths =
   scripts:
     dir: "./assets/scripts"
     dest: "./public/scripts"
-    maps: "./public/scripts/maps"
     files: [
       "main"
     ]
@@ -62,9 +61,12 @@ gulp.task "scripts", ->
   bundler = -> browserify(options)
 
   paths.scripts.files.forEach (file) ->
+    mapLocation = "#{paths.scripts.dest}/maps/#{file}.map.json"
+    publicMapLocation = "scripts/maps/#{file}.map.json"
+
     bundler()
       .add("#{paths.scripts.dir}/#{file}.litcoffee")
-      .plugin("minifyify", {output: "#{paths.scripts.maps}/#{file}.map.json"})
+      .plugin("minifyify", {map: publicMapLocation, output: mapLocation})
       .bundle()
       .pipe(source "#{file}.js")
       .pipe(gulp.dest(paths.scripts.dest))
