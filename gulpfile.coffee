@@ -3,6 +3,8 @@ util = require "gulp-util"
 notify = require "gulp-notify"
 _if = require "gulp-if"
 browserSync = require("browser-sync").create()
+
+__ = require "#{ __dirname }/lib/__"
 reload = -> browserSync.reload()
 
 # Paths
@@ -12,6 +14,7 @@ paths =
   scripts:
     dir: "./assets/scripts"
     dest: "./public/scripts"
+    maps: "./public/scripts/maps"
     files: [
       "main"
     ]
@@ -19,7 +22,8 @@ paths =
     src: "./assets/styles/*.scss"
     dest: "./public/styles"
   views:
-    src: "./views/**/*.jade"
+    dir: "./views"
+    src: "./views/*.jade"
     dest: "./public"
   tests:
     src: "./spec/*.coffee"
@@ -42,17 +46,25 @@ gulp.task "scripts", ->
   coffeelint = require "gulp-coffeelint"
   reporter = require("coffeelint-stylish").reporter
   coffee = require "gulp-coffee"
-  uglify = require "gulp-uglify"
   browserify = require "browserify"
   source = require "vinyl-source-stream"
 
+  # Linting
   gulp.src "#{paths.scripts.dir}/*.litcoffee"
     .pipe do coffeelint
     .pipe do coffeelint.reporter
     .pipe coffeelint.reporter("fail")
 
+  # Bundling client side scripts using Browserify
+  options = {}
+  options.debug = true if __.config().env is "develop"
+
+  bundler = -> browserify(options)
+
   paths.scripts.files.forEach (file) ->
-    browserify("#{paths.scripts.dir}/#{file}.litcoffee")
+    bundler()
+      .add("#{paths.scripts.dir}/#{file}.litcoffee")
+      .plugin("minifyify", {output: "#{paths.scripts.maps}/#{file}.map.json"})
       .bundle()
       .pipe(source "#{file}.js")
       .pipe(gulp.dest(paths.scripts.dest))
@@ -93,7 +105,7 @@ gulp.task "views", ->
 # Build
 # =====
 gulp.task "build", ["scripts", "styles", "views"], ->
-  util.log "🔨  Built"
+  util.log "🔨  Built for #{__.config.env}"
 
 # Default
 # =======
@@ -105,4 +117,4 @@ gulp.task "default", ["build"], ->
   util.log "👓  Watching..."
   gulp.watch(["#{paths.scripts.dir}/**/*.litcoffee", paths.tests.src], ["test", "scripts"]).on("change", reload)
   gulp.watch(paths.styles.src, ["styles"]).on("change", reload)
-  gulp.watch(paths.views.src, ["views"]).on("change", reload)
+  gulp.watch(paths.views.dir, ["views"]).on("change", reload)
