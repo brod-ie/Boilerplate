@@ -2,23 +2,28 @@ gulp = require "gulp"
 util = require "gulp-util"
 notify = require "gulp-notify"
 _if = require "gulp-if"
+browserSync = require("browser-sync").create()
+
+__ = require "#{ __dirname }/lib/__"
+reload = -> browserSync.reload()
 
 # Paths
 # =====
 paths =
+  root: "./public"
   scripts:
-    server:
-      src: "./src/*.coffee"
-      dest: "./app"
-    client:
-      src: "./assets/scripts/main.coffee"
-      dest: "./public/scripts"
+    dir: "./assets/scripts"
+    dest: "./public/scripts"
+    files: [
+      "main"
+    ]
   styles:
     src: "./assets/styles/*.scss"
     dest: "./public/styles"
   views:
+    dir: "./views"
     src: "./views/*.jade"
-    dest: "./public/templates"
+    dest: "./public"
   tests:
     src: "./spec/*.coffee"
 
@@ -40,29 +45,45 @@ gulp.task "scripts", ->
   coffeelint = require "gulp-coffeelint"
   reporter = require("coffeelint-stylish").reporter
   coffee = require "gulp-coffee"
-  uglify = require "gulp-uglify"
   browserify = require "browserify"
   source = require "vinyl-source-stream"
 
-  # Client
-  gulp.src paths.scripts.client.src
+  # Linting
+  gulp.src "#{paths.scripts.dir}/*.litcoffee"
     .pipe do coffeelint
     .pipe do coffeelint.reporter
     .pipe coffeelint.reporter("fail")
 
-  browserify( paths.scripts.client.src )
-    .bundle()
-    .pipe(source 'main.js')
-    .pipe(gulp.dest( paths.scripts.client.dest ))
-    .pipe( _if(process.platform is "darwin", notify("Built <%= file.relative %>")))
+  # Bundling client side scripts using Browserify
+  options = {}
+  options.debug = true if __.config().env is "develop"
 
-  # Server
-  gulp.src paths.scripts.server.src
-    .pipe do coffeelint
-    .pipe do coffeelint.reporter
-    .pipe do coffee
-    .pipe gulp.dest paths.scripts.server.dest
-    .pipe( _if(process.platform is "darwin", notify("Built <%= file.relative %>")))
+  bundler = -> browserify(options)
+
+  paths.scripts.files.forEach (file) ->
+    mapLocation = "#{paths.scripts.dest}/maps/#{file}.map.json"
+    publicMapLocation = "scripts/maps/#{file}.map.json"
+
+    bundler()
+      .add("#{paths.scripts.dir}/#{file}.litcoffee")
+      .plugin("minifyify", {map: publicMapLocation, output: mapLocation})
+      .bundle()
+      .pipe(source "#{file}.js")
+      .pipe(gulp.dest(paths.scripts.dest))
+      .pipe( _if(process.platform is "darwin", notify("Built <%= file.relative %>")))
+
+  # This was the server build step, needs reimplementing
+  # ---------------------------------------------------------
+  #
+  # TODO: Use browserSync to run app.js instead of supervisor
+  #
+  # # Server
+  # gulp.src paths.scripts.server.src
+  #   .pipe do coffeelint
+  #   .pipe do coffeelint.reporter
+  #   .pipe do coffee
+  #   .pipe gulp.dest paths.scripts.server.dest
+  #   .pipe( _if(process.platform is "darwin", notify("Built <%= file.relative %>")))
 
 # Styles
 # ======
@@ -86,25 +107,39 @@ gulp.task "styles", ->
 # =====
 gulp.task "views", ->
   jade = require "gulp-jade"
-  define = require "gulp-define-module"
+
+  # TODO:
+  #
+  #   When reimplementing the server create a second Jade system that
+  #   writes .js templates and then uses:
+  #
+  #     define = require "gulp-define-module"
+  #     .pipe define("node")
+  #
+  #   to modularise in CommonJS format
 
   gulp.src paths.views.src
     .pipe jade(
-      client: true
+      locals:
+        version: new Date().getTime()
+      client: false
     )
-    .pipe define("node")
     .pipe gulp.dest paths.views.dest
     .pipe( _if(process.platform is "darwin", notify("Built <%= file.relative %>")))
 
 # Build
 # =====
 gulp.task "build", ["scripts", "styles", "views"], ->
-  util.log "🔨  Built"
+  util.log "🔨  Built for #{__.config().env}"
 
 # Default
 # =======
 gulp.task "default", ["build"], ->
+  browserSync.init
+    server:
+      baseDir: paths.root
+
   util.log "👓  Watching..."
-  gulp.watch [paths.scripts.server.src, paths.scripts.client.src, paths.tests.src], ["test", "scripts"]
-  gulp.watch paths.styles.src, ["styles"]
-  gulp.watch paths.views.src, ["views"]
+  gulp.watch(["#{paths.scripts.dir}/**/*.litcoffee", paths.tests.src], ["test", "scripts"]).on("change", reload)
+  gulp.watch(paths.styles.src, ["styles"]).on("change", reload)
+  gulp.watch(paths.views.dir, ["views"]).on("change", reload)

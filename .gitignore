@@ -10,7 +10,5 @@ node_modules
 bower_modules
 
 # Built app
-app
-public/scripts
-public/styles
-public/templates
+public/
+app/

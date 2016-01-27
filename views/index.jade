@@ -1,10 +1,9 @@
-extends ./layout.jade
+extends ./partials/layout.jade
 
 block content
   .container
     h1 Brodie's Boilerplate
-    p.pull-left Boilerplate server is up and running, now it's your turn.
+    p.pull-left Boilerplate static is built and served thanks to Browsersync. Now it's your turn.
 
   //- Scripts
-  script(type="text/javascript", src="/socket.io/socket.io.js")
-  script(type="text/javascript", src="/scripts/main.js?#{ version }")
+  script(type="text/javascript", src="scripts/main.js?#{ version }")

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ryanbrodie/Boilerplate.svg?branch=master)](https://travis-ci.org/ryanbrodie/Boilerplate
+
 # Brodie's Boilerplate
 
 A boilerplate implementing my tech stack of choice.
@@ -6,7 +8,7 @@ A boilerplate implementing my tech stack of choice.
 
 1. Fork this repo
 2. `$ git clone https://github.com/your-username/Boilerplate.git`
-3. `$ cd path/to/Boilerplate && npm run init && npm run build && npm start`
+3. `$ cd path/to/Boilerplate && npm run init && npm run build`
 
 ## Usage
 
@@ -14,7 +16,13 @@ A boilerplate implementing my tech stack of choice.
 
     npm init
 
-Installs all dependencies found in [`package.json`](https://github.com/ryanbrodie/Boilerplate/blob/master/package.json).
+Installs all dependencies found in [`package.json`](https://github.com/ryanbrodie/Boilerplate/blob/master/package.json) as well as writing a default `config.json` file that sensitive statics can be defined outside of the repo.
+
+### Developing
+
+    gulp
+
+Gulp will watch and build accordingly serving your assets using Browsersync.
 
 ### Build
 
@@ -36,28 +44,21 @@ Runs the server using supervisor.
 
 ## Features
 
+I've switched to a static boilerplate and will reimplement the dynamic Node server in the future.
+
+For now, it has:
+
 - GulpJS build system (with integrated Jasmine BDD testing)
 - Jade templating
 - Browserify for client side dependency
-- SocketIO
+- ~~SocketIO~~ (to be reimplemented)
 - Scripting in SASS & CoffeeScript
 - Bootstrap, Backbone, Lodash, JQuery
-- Express server with static assets folder
+- ~~Express server with static assets folder~~ (To be reimplemented)
 - Cachebusting based on date
-- Flat UI Colors and Animate.css for frontend niceties
+- Flat UI Colors and Animate.css for fron-tend niceties
+- `config.json` system for project-wide configuration e.g. environment
 
 ## Todo
 - Cachebuster based on cached git commit hash rather than datestamp
-- Proper environment switching
-  - local, dev, and production
-  - Use `process.env.ENV_VARIABLE` to establish debugging and minify practices
-- ~~Shared views between client/server~~
-- Backbone history using pushstate
-- ~~SocketIO~~
-- Neo4j
-- ~~Lodash + Backbone~~
-- Finish Hello.coffee notification class
-- ~~Testing with [Jasmine](http://coffeescriptcookbook.com/chapters/testing/testing_with_jasmine)~~
-- ASync browserify module loading
-  - Use jQuery only for legacy browsers and Zepto where possible
-  - Download templates on the fly
+- Update to Bootstrap 4.0 (whenever it ships)

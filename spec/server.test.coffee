@@ -1,28 +1,32 @@
-# Requires
-__ = require "#{ __dirname }/../lib/__"
-frisby = require "frisby"
-io = require "socket.io-client"
-AsyncSpec = require "node-jasmine-async"
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# REMOVED UNTIL DYNAMIC SERVER IS REIMPLEMENTED
+# =============================================
 
-# Determine config
-config = __.config()
-server = require "#{ __dirname }/../app/app" # Server on localhost:5000
-
-describe "Web server", ->
-
-  # REST API
-  # ========
-  frisby
-    .create "Site homepage can be reached"
-    .get "http://localhost:#{ config.PORT }"
-    .expectStatus 200
-    .toss()
-
-  frisby
-    .create "Web server can return an error for bad endpoints"
-    .get "http://localhost:#{ config.PORT }/jksjckjks"
-    .expectStatus 404
-    .toss()
+# # Requires
+# __ = require "#{ __dirname }/../lib/__"
+# frisby = require "frisby"
+# io = require "socket.io-client"
+# AsyncSpec = require "node-jasmine-async"
+#
+# # Determine config
+# config = __.config()
+# server = require "#{ __dirname }/../app/app" # Server on localhost:5000
+#
+# describe "Web server", ->
+#
+#   # REST API
+#   # ========
+#   frisby
+#     .create "Site homepage can be reached"
+#     .get "http://localhost:#{ config.PORT }"
+#     .expectStatus 200
+#     .toss()
+#
+#   frisby
+#     .create "Web server can return an error for bad endpoints"
+#     .get "http://localhost:#{ config.PORT }/jksjckjks"
+#     .expectStatus 404
+#     .toss()
 
   # REAL TIME API
   # =============
