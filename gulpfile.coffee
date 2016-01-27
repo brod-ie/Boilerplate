@@ -72,6 +72,19 @@ gulp.task "scripts", ->
       .pipe(gulp.dest(paths.scripts.dest))
       .pipe( _if(process.platform is "darwin", notify("Built <%= file.relative %>")))
 
+  # This was the server build step, needs reimplementing
+  # ---------------------------------------------------------
+  #
+  # TODO: Use browserSync to run app.js instead of supervisor
+  #
+  # # Server
+  # gulp.src paths.scripts.server.src
+  #   .pipe do coffeelint
+  #   .pipe do coffeelint.reporter
+  #   .pipe do coffee
+  #   .pipe gulp.dest paths.scripts.server.dest
+  #   .pipe( _if(process.platform is "darwin", notify("Built <%= file.relative %>")))
+
 # Styles
 # ======
 gulp.task "styles", ->
@@ -95,6 +108,16 @@ gulp.task "styles", ->
 gulp.task "views", ->
   jade = require "gulp-jade"
 
+  # TODO:
+  #
+  #   When reimplementing the server create a second Jade system that
+  #   writes .js templates and then uses:
+  #
+  #     define = require "gulp-define-module"
+  #     .pipe define("node")
+  #
+  #   to modularise in CommonJS format
+
   gulp.src paths.views.src
     .pipe jade(
       locals:
@@ -107,7 +130,7 @@ gulp.task "views", ->
 # Build
 # =====
 gulp.task "build", ["scripts", "styles", "views"], ->
-  util.log "🔨  Built for #{__.config.env}"
+  util.log "🔨  Built for #{__.config().env}"
 
 # Default
 # =======

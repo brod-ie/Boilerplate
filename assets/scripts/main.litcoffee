@@ -1,6 +1,6 @@
 # Global requires
 
-Use Browserify with CommonJS module formatting to load external JavaScript
+Use Browserify with CommonJS modularisation to load external JavaScript
 as if on a Node server
 
     global.$ = require "jquery"
