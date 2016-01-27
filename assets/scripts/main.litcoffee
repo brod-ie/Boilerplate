@@ -3,10 +3,10 @@
 Use Browserify with CommonJS modularisation to load external JavaScript
 as if on a Node server
 
-    global.$ = require "jquery"
-    global._ = require "lodash"
-    global.Backbone = require "backbone"
-    global.Backbone.$ = $
+    $ = require "jquery"
+    _ = require "lodash"
+    Backbone = require "backbone"
+    Backbone.$ = $
 
 Fires on page load
 
