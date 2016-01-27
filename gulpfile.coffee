@@ -47,6 +47,7 @@ gulp.task "scripts", ->
   coffee = require "gulp-coffee"
   browserify = require "browserify"
   source = require "vinyl-source-stream"
+  insert = require "gulp-insert"
 
   # Linting
   gulp.src "#{paths.scripts.dir}/*.litcoffee"
@@ -69,6 +70,7 @@ gulp.task "scripts", ->
       .plugin("minifyify", {map: publicMapLocation, output: mapLocation})
       .bundle()
       .pipe(source "#{file}.js")
+      .pipe(insert.append("\n//# sourceURL=#{file}.coffee"))
       .pipe(gulp.dest(paths.scripts.dest))
       .pipe( _if(process.platform is "darwin", notify("Built <%= file.relative %>")))
 
