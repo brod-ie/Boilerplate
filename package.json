@@ -21,6 +21,7 @@
     "browserify": "^13.0.0",
     "browserify-shim": "^3.8.12",
     "coffee-script": "^1.8.0",
+    "coffeeify": "^2.0.1",
     "coffeelint-stylish": "^0.1.0",
     "compression": "^1.0.9",
     "crypto": "0.0.3",
