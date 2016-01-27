@@ -70,7 +70,7 @@ gulp.task "scripts", ->
       .plugin("minifyify", {map: publicMapLocation, output: mapLocation})
       .bundle()
       .pipe(source "#{file}.js")
-      .pipe(insert.append("\n//# sourceURL=#{file}.coffee"))
+      .pipe(insert.append("\n//# sourceURL=#{file}.litcoffee"))
       .pipe(gulp.dest(paths.scripts.dest))
       .pipe( _if(process.platform is "darwin", notify("Built <%= file.relative %>")))
 
