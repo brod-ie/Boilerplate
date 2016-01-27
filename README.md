@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ryanbrodie/Boilerplate.svg?branch=master)](https://travis-ci.org/ryanbrodie/Boilerplate
+[![Build Status](https://travis-ci.org/ryanbrodie/Boilerplate.svg?branch=master)](https://travis-ci.org/ryanbrodie/Boilerplate)
 
 # Brodie's Boilerplate
 
