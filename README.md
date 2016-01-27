@@ -14,7 +14,7 @@ A boilerplate implementing my tech stack of choice.
 
     npm init
 
-Installs all dependencies found in [`package.json`](https://github.com/ryanbrodie/Boilerplate/blob/master/package.json).
+Installs all dependencies found in [`package.json`](https://github.com/ryanbrodie/Boilerplate/blob/master/package.json) as well as writing a default `config.json` file that sensitive statics can be defined outside of the repo.
 
 ### Build
 

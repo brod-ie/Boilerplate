@@ -3,7 +3,7 @@
   "private": true,
   "main": "./app/app.js",
   "scripts": {
-    "init": "npm install gulp -g && npm install coffee-script -g && npm install browserify-shim -g && npm install && echo '{\"PORT\":5000}' > config.json",
+    "init": "npm install gulp -g && npm install coffee-script -g && npm install browserify-shim -g && npm install && echo '{\"env\":\"develop\"}' > config.json",
     "test": "npm run init && npm run build && gulp test",
     "build": "npm install && gulp build --require coffee-script/register",
     "start": "supervisor -e 'js|css|jade|png|jpeg|json' app/app.js"
@@ -17,10 +17,10 @@
     "bootstrap-browserify": "^2.1.1",
     "bootstrap-sass": "^3.2.0",
     "bower": "^1.3.8",
+    "browser-sync": "^2.11.1",
     "browserify": "< 5",
     "browserify-shim": "^3.7.0",
     "coffee-script": "^1.8.0",
-    "coffeeify": "^0.7.0",
     "coffeelint-stylish": "^0.1.0",
     "compression": "^1.0.9",
     "crypto": "0.0.3",
