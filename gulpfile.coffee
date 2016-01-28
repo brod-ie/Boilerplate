@@ -24,6 +24,9 @@ paths =
     dir: "./views"
     src: "./views/*.jade"
     dest: "./public"
+  assets:
+    src: ["./assets/images/**", "./assets/fonts/**"]
+    dest: "./public"
   tests:
     src: "./spec/*.coffee"
 
@@ -129,9 +132,20 @@ gulp.task "views", ->
     .pipe gulp.dest paths.views.dest
     .pipe( _if(process.platform is "darwin", notify("Built <%= file.relative %>")))
 
+# Remove old static files
+# =======================
+# TODO: This needs to be implemented!
+# -----------------------------------
+
+# Static assets
+# =============
+gulp.task "assets", ->
+  gulp.src(paths.assets.src, base: './assets')
+    .pipe gulp.dest(paths.assets.dest)
+
 # Build
 # =====
-gulp.task "build", ["scripts", "styles", "views"], ->
+gulp.task "build", ["scripts", "styles", "views", "assets"], ->
   util.log "🔨  Built for #{__.config().env}"
 
 # Default
@@ -142,6 +156,7 @@ gulp.task "default", ["build"], ->
       baseDir: paths.root
 
   util.log "👓  Watching..."
-  gulp.watch(["#{paths.scripts.dir}/**/*.litcoffee", paths.tests.src], ["test", "scripts"]).on("change", reload)
-  gulp.watch(paths.styles.src, ["styles"]).on("change", reload)
-  gulp.watch(paths.views.src, ["views"]).on("change", reload)
+  gulp.watch(["#{paths.scripts.dir}/**/*.litcoffee", paths.tests.src], ["scripts"]).on("change", (file) -> reload(file.path))
+  gulp.watch(paths.styles.src, ["styles"]).on("change", (file) -> reload(file.path))
+  gulp.watch(paths.views.src, ["views"]).on("change", (file) -> reload(file.path))
+  gulp.watch(paths.assets.src, ["assets"]).on("change", (file) -> reload(file.path))
